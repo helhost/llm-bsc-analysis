@@ -1,0 +1,12 @@
+# Core data manipulation and analysis
+pandas>=2.0.0
+numpy>=1.26.0
+
+# Excel file handling
+openpyxl>=3.1.0
+
+# Statistical analysis
+scipy>=1.10.0
+
+# Text analysis and sentiment
+textblob>=0.19.0
