@@ -1,11 +1,14 @@
 from pathlib import Path
 import argparse
 import sys
+import sqlite3
 
 from src.load_file import load_file
 from src.analyze import analyze_data
 from src.present_data import present_analysis_tables
 from src.export_tables import export_latex_tables
+from src.db.get_db_info import add_db_to_df
+from src.analyze_correlations import analyze_correlations
 
 def main():
 
@@ -68,9 +71,15 @@ def main():
     export_latex_tables(presented_data, output_dir)
 
 
+    # add database connection and queries
+    conn = sqlite3.connect(db_file)
+    cur = conn.cursor()
 
+    # add the database information to the DataFrame
+    df = add_db_to_df(cur, df)
 
-
+    # analyze correlations
+    print(analyze_correlations(df))
 
 if __name__ == "__main__":
     main()
