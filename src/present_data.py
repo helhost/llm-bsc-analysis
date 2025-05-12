@@ -26,9 +26,9 @@ def present_analysis_tables(group_results: dict[str,pd.DataFrame]) -> dict:
         def match_columns(keywords):
             return [col for col in result_df.columns if any(k in col.lower() for k in keywords)]
 
-        df1_cols = [group_name] + match_columns(['usefulness', 'actionability', 'duplicate', 'relevant', 'action hallucination', 'n_action'])
-        df2_cols = [group_name] + match_columns(['num responses', 'reasoning quality', 'reasoning hallucination', 'n_response'])
-        df3_cols = [group_name] + match_columns(['success', 'tree depth', 'num branches', 'n_scenario'])
+        df1_cols = [group_name] + match_columns(['usefulness', 'actionability', 'duplicate', 'relevant', 'action hallucination', 'n action'])
+        df2_cols = [group_name] + match_columns(['num responses', 'reasoning quality', 'reasoning hallucination', 'n response'])
+        df3_cols = [group_name] + match_columns(['success', 'tree depth', 'num branches', 'n scenario'])
 
         # Assign sub-dataframes
         final_dfs[group_name]['action'] = result_df[df1_cols].copy()
@@ -36,9 +36,9 @@ def present_analysis_tables(group_results: dict[str,pd.DataFrame]) -> dict:
         final_dfs[group_name]['scenario'] = result_df[df3_cols].copy()
 
         # Rename n columns
-        final_dfs[group_name]['action'].rename(columns={'n_action': 'Actions Evaluated'}, inplace=True)
-        final_dfs[group_name]['response'].rename(columns={'n_response': 'Responses Evaluated'}, inplace=True)
-        final_dfs[group_name]['scenario'].rename(columns={'n_scenario': 'Scenarios Evaluated'}, inplace=True)
+        final_dfs[group_name]['action'].rename(columns={'N Action': 'Actions Evaluated'}, inplace=True)
+        final_dfs[group_name]['response'].rename(columns={'N Response': 'Responses Evaluated'}, inplace=True)
+        final_dfs[group_name]['scenario'].rename(columns={'N Scenario': 'Scenarios Evaluated'}, inplace=True)
 
         # Rename hallucination columns
         final_dfs[group_name]['action'].rename(columns={'Action Hallucination': 'Hallucination'}, inplace=True)
